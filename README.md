@@ -1,9 +1,14 @@
 
-![LiveVersionLastUpdated](https://img.shields.io/badge/dynamic/json?color=informational&label=Live%20version%20Last%20Updated&query=%24.lastUpdated&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue) ![LiveVersionStatus](https://img.shields.io/badge/dynamic/json?color=blue&label=Status&query=%24.status&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue)
-
 <center>
 <br>
+  
 
+  <p align="center">
+      <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=Live%20version%20Last%20Updated&query=%24.lastUpdated&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue"></img>
+      <img src="https://img.shields.io/badge/dynamic/json?color=blue&label=Status&query=%24.status&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue"></img>
+  </p>
+  
+  <br>
   <h1 align="center">covid.stream</h1>
   <h3 align="center">An API for viewing latest Coronavirus (COVID-19) statistics.</h3>
   <i>
