@@ -2,26 +2,34 @@ import csv
 import json
 import traceback
 import uuid
+import os
 
 import arrow
 import requests
-import wget
 from github import Github
 from loguru import logger
 from redis import Redis
 
 from app.authorization import AppAuth
-from app.modules.celery_worker import application
 from app.modules.parser import Parser
+
+# Celery worker for updating stats + pulling info.
+
+from celery import Celery
+
+application = Celery("worker", broker="redis://localhost:6079/0",)
 
 
 @application.on_after_configure.connect
 def setup_update_caches(sender, **kwargs):
-    sender.add_periodic_task(10800, update_cases.s(), name="update Covid19 Cases")
+    sender.add_periodic_task(60, update_cases.s(), name="update Covid19 Cases")
 
 
 @application.task
 def update_cases():
+    logger.remove()
+    logger.add("logs.log")
+
     # Grab the latest infomration from the github repo and update the numbers in redis.
 
     current_time = arrow.get()
@@ -70,7 +78,9 @@ def update_cases():
         if item.name == current_time_string:
             logger.info("Found today's date.")
             # Great, today exists. -> download to file and parse it
-            wget.download(item.download_url, f"{item_id}.csv")
+            file_request = requests.get(item.download_url)
+            with open(f"{item_id}.csv", "wb") as f:
+                f.write(file_request.content)
             Parser(f"{item_id}.csv").parse()
             found_file = True
 
@@ -83,10 +93,14 @@ def update_cases():
                 item.name
                 == arrow.now().shift(hours=current_int).format("MM-DD-YYYY") + ".csv"
             ):
-                wget.download(item.download_url, f"{item_id}.csv")
+                file_request = requests.get(item.download_url)
+                with open(f"{item_id}.csv", "wb") as f:
+                    f.write(file_request.content)
+
                 Parser(f"{item_id}.csv").parse()
                 found_file = True
                 break
         current_int -= 24
 
+    os.system(f"rm {item_id}.csv")
     return True
