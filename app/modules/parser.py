@@ -1,13 +1,11 @@
 # Main Parser.
 
-import traceback
-import arrow
-
-
-import pathlib
 import csv
 import json
+import pathlib
+import traceback
 
+import arrow
 from loguru import logger
 
 from app.modules.database import Database
