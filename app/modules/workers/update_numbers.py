@@ -17,12 +17,12 @@ from app.modules.parser import Parser
 
 from celery import Celery
 
-application = Celery("worker", broker="redis://localhost:6079/0",)
+application = Celery("worker", broker="redis://localhost:4032/5",)
 
 
 @application.on_after_configure.connect
 def setup_update_caches(sender, **kwargs):
-    sender.add_periodic_task(60, update_cases.s(), name="update Covid19 Cases")
+    sender.add_periodic_task(10800, update_cases.s(), name="update Covid19 Cases")
 
 
 @application.task
