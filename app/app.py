@@ -67,6 +67,6 @@ redis_connection = database._redis
 country_redis = database._countryRedis
 
 
-api.add_route("/cases", LatestCases(redis_connection, country_redis))
+api.add_route("/latest/cases", LatestCases(redis_connection, country_redis))
 api.add_route("/latest/numbers", LatestNumbers(redis_connection))
 
