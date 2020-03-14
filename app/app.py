@@ -3,11 +3,31 @@
 
 import json
 
+import arrow
 import falcon
 import redis
 from loguru import logger
 
 from app.modules.database import Database
+
+
+class Ping(object):
+    def __init__(self, redis_connection):
+        self._redis = redis_connection
+
+    def on_get(self, req, resp):
+        unparsed = self._redis.get("lastUpdatedTimestamp")
+        github_page = req.get_param("githubPage")
+        if github_page:
+            parsed = json.loads(unparsed.decode("utf-8"))
+            resp.media = {
+                "status": "Online",
+                "lastUpdated": arrow.get(parsed["data"]["lastUpdatedISO"]).humanize(),
+            }
+        else:
+            parsed = json.loads(unparsed.decode("utf-8"))
+            parsed["status"] = "Online"
+            resp.media = parsed
 
 
 class LatestCases(object):
@@ -67,6 +87,6 @@ database = Database()
 redis_connection = database._redis
 country_redis = database._countryRedis
 
-
+api.add_route("/status", Ping(redis_connection))
 api.add_route("/latest/cases", LatestCases(redis_connection, country_redis))
 api.add_route("/latest/numbers", LatestNumbers(redis_connection))

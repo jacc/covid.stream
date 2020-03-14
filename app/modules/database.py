@@ -53,7 +53,10 @@ class Database(object):
                 load_country["data"].append(item)
                 self._countryRedis.set(item["Country/Region"], json.dumps(load_country))
             else:
-                load_country = {"data": [item]}
+                load_country = {
+                    "data": [item],
+                    "lastUpdated": arrow.now().isoformat(),
+                }
                 self._countryRedis.set(item["Country/Region"], json.dumps(load_country))
 
     def update_data(self, new_data_update):
@@ -79,3 +82,14 @@ class Database(object):
         self._updateTotalDeaths(new_data_update)
         self._updateTotalRecovered(new_data_update)
         self._updateEachCountry(new_data_update)
+        self._redis.set(
+            "lastUpdatedTimestamp",
+            json.dumps(
+                {
+                    "data": {
+                        "lastUpdatedISO": arrow.now().isoformat(),
+                        "lastUpdatedTimestamp": arrow.now().timestamp,
+                    }
+                }
+            ),
+        )
