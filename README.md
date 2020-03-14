@@ -14,7 +14,7 @@
 
 Endpoint: https://api.covid.stream
 
-### `/latest/cases` (GET)
+### ``/latest/cases`` (GET)
 
 ```json
 {
@@ -45,11 +45,11 @@ Endpoint: https://api.covid.stream
 
 ** This endpoint contains **ALL** cases found.**
 
-###`/latest/cases?filterByCountry=X` (GET)
+### ``/latest/cases?filterByCountry=X`` (GET)
 
 Returns the same information but filtered with the country. You can check all countries available by checking the `countriesInfected` key above.
 
-### ```/latest/numbers (GET)
+### ``/latest/numbers`` (GET)
 
 ```json
 {
