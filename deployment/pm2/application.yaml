@@ -1,0 +1,21 @@
+# PM2 server
+
+apps:
+  - script: redis-server
+    args: --port 4032
+    name: "Redis"
+    watch: true
+
+  - script: /home/ubuntu/application/covid.stream/venv/bin/gunicorn
+    args: app.app:api --bind=unix:/tmp/connection.sock --workers=4
+    watch: true
+    interpreter: /home/ubuntu/application/covid.stream/venv/bin/python
+    max_memory_restart: 5G
+    name: "API"
+
+  - script: /home/ubuntu/application/covid.stream/venv/bin/celery
+    cwd: /home/ubuntu/application/covid.stream
+    args: -A app.modules.workers.update_numbers worker -B -E
+    interpreter: /home/ubuntu/application/covid.stream/venv/bin/python
+    name: "Celery"
+    watch: true
