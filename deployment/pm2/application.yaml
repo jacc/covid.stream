@@ -7,6 +7,7 @@ apps:
     watch: true
 
   - script: /home/ubuntu/application/covid.stream/venv/bin/gunicorn
+    cwd: /home/ubuntu/application/covid.stream
     args: app.app:api --bind=unix:/tmp/connection.sock --workers=4
     watch: true
     interpreter: /home/ubuntu/application/covid.stream/venv/bin/python
