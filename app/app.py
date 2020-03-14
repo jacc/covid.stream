@@ -1,12 +1,13 @@
 # API Endpoints.
 
 
-import falcon
 import json
-import redis
-from app.modules.database import Database
 
+import falcon
+import redis
 from loguru import logger
+
+from app.modules.database import Database
 
 
 class LatestCases(object):
@@ -69,4 +70,3 @@ country_redis = database._countryRedis
 
 api.add_route("/latest/cases", LatestCases(redis_connection, country_redis))
 api.add_route("/latest/numbers", LatestNumbers(redis_connection))
-

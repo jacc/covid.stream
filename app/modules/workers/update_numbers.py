@@ -10,9 +10,9 @@ from github import Github
 from loguru import logger
 from redis import Redis
 
+from app.authorization import AppAuth
 from app.modules.celery_worker import application
 from app.modules.parser import Parser
-from app.authorization import AppAuth
 
 
 @application.on_after_configure.connect
