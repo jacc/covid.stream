@@ -18,58 +18,9 @@
 
 ---
 
-## Live version
+# API
 
-Endpoint: https://api.covid.stream
-
-### ``/latest/cases`` (GET)
-
-```json
-{
-    "data": [
-        {
-            "Province/State": "Hubei",
-            "Country/Region": "China",
-            "Last Update": "2020-03-12T09:53:06",
-            "Confirmed": "67781",
-            "Deaths": "3056",
-            "Recovered": "50318",
-            "Latitude": "30.9756",
-            "Longitude": "112.2707"
-        }
-     ],
-    "meta-data": {
-        "countriesInfected": [
-            "China",
-            "Italy",
-            "Iran"
-        ]
-    },
-    "apiInformation": {
-        "lastUpdated": "03-14-2020"
-    }
-
-```
-
-**This endpoint contains **ALL** cases found.**
-
-### ``/latest/cases?filterByCountry=X`` (GET)
-
-Returns the same information but filtered with the country. You can check all countries available by checking the `countriesInfected` key above.
-
-### ``/latest/numbers`` (GET)
-
-```json
-{
-  "data": {
-    "totalConfirmedNumbers": 128343,
-    "totalDeathNumbers": 4720,
-    "totalRecoveredNumbers": 68324
-  }
-}
-```
-
-**Filter coming soon.**
+Read the docs [here](https://docs.covid.stream)
 
 ---
 
@@ -83,8 +34,8 @@ Data might not be 100% in line with the version on John Hopkin's dashboard. This
 
 No rate limits exist for now, but please remember that the data will only be updated every three hours.
 
----
 
+---
 # Development
 
 ---
