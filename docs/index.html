@@ -1,138 +1,82 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>covid.stream</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
-    <!-- Bulma Version 0.8.x-->
-    <link rel="icon" type="image/png" href="favicon.png" />
-    <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.0/css/bulma.min.css" />
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>My custom Bulma website</title>
+    <link rel="stylesheet" href="css/mystyles.css">
+    <script src="https://kit.fontawesome.com/65721aa702.js" crossorigin="anonymous"></script>
 </head>
-<!-- 
+
 <body>
+    <section class="hero is-black is-fullheight">
+        <div class="hero-body">
 
-    <nav class="navbar is-white">
-        <div class="container">
-            <div class="navbar-brand">
-                <a class="navbar-item brand-text" href="../index.html">
-                    covid.stream
-                </a>
-                <div class="navbar-burger burger" data-target="navMenu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div id="navMenu" class="navbar-menu">
-                <div class="navbar-start">
-                    <a class="navbar-item" href="admin.html">
-                        Home
-                    </a>
-                    <a class="navbar-item" href="admin.html">
-                        Prevention
-                    </a>
-                    <a class="navbar-item" href="admin.html">
-                        API
-                    </a>
-                    <a class="navbar-item" href="admin.html">
-                        Contact
-                    </a>
-                </div>
 
-            </div>
-        </div>
-    </nav>
-    <div class="container is-fullscreen">
-        <div class="columns">
-            <<div class="column is-3 ">
-                <aside class="menu is-hidden-mobile">
-                    <p class="menu-label">
-                        General
-                    </p>
-                    <ul class="menu-list">
-                        <li><a class="is-active">Dashboard</a></li>
-                        <li><a>Customers</a></li>
-                        <li><a>Other</a></li>
-                    </ul>
-                    <p class="menu-label">
-                        Administration
-                    </p>
-                    <ul class="menu-list">
-                        <li><a>Team Settings</a></li>
-                        <li>
-                            <a>Manage Your Team</a>
-                            <ul>
-                                <li><a>Members</a></li>
-                                <li><a>Plugins</a></li>
-                                <li><a>Add a member</a></li>
-                                <li><a>Remove a member</a></li>
-                            </ul>
-                        </li>
-                        <li><a>Invitations</a></li>
-                        <li><a>Cloud Storage Environment Settings</a></li>
-                        <li><a>Authentication</a></li>
-                        <li><a>Payments</a></li>
-                    </ul>
-                    <p class="menu-label">
-                        Transactions
-                    </p>
-                    <ul class="menu-list">
-                        <li><a>Payments</a></li>
-                        <li><a>Transfers</a></li>
-                        <li><a>Balance</a></li>
-                        <li><a>Reports</a></li>
-                    </ul>
-                </aside>
-            </div> 
-            <div class="column is-9">
-                <nav class="breadcrumb" aria-label="breadcrumbs">
-                    <ul>
-                        <li><a href="../">Bulma</a></li>
-                        <li><a href="../">Templates</a></li>
-                        <li><a href="../">Examples</a></li>
-                        <li class="is-active"><a href="#" aria-current="page">Admin</a></li>
-                    </ul>
-                </nav>  
-                <section class="info-tiles">
-                    <div class="tile is-ancestor has-text-centered">
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">439k</p>
-                                <p class="subtitle">Users</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">59k</p>
-                                <p class="subtitle">Products</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">3.4k</p>
-                                <p class="subtitle">Open Orders</p>
-                            </article>
-                        </div>
-                        <div class="tile is-parent">
-                            <article class="tile is-child box">
-                                <p class="title">19</p>
-                                <p class="subtitle">Exceptions</p>
-                            </article>
+
+            <div class="container has-text-centered">
+
+                <div class="columns is-centered">
+                    <div class="column is-narrow has-text-centered">
+                        <div class="container">
+                            <figure class="image is-128x128">
+                                <img style="filter: invert();" src="img/med-icon.svg">
+                            </figure>
                         </div>
                     </div>
-                </section>
-            </div>
-        </div>
-    </div>
-    <script async type="text/javascript" src="../js/bulma.js"></script>
-</body> -->
+                    <div class="column is-narrow has-text-centered">
+                        <div class="container is-centered">
+                            <figure class=" image is-128x128">
+                                <img style="filter: invert();" src="img/code-icon.svg">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
 
-<body>
-    <img src="covidstream.png" class="centered">
+                <h1 class="title ">
+                    COVID-19 (coronavirus) statistics for developers.
+                </h1>
+                <h2 class="subtitle">
+                    RESTFUL API for developers for use in Apps, Scripts or anything you want.
+                </h2>
+                <h2 class="subtitle is-size-6">
+                    Automatically updated <i>every three hours.</i>
+                </h2>
+                <h2 class="subtitle is-size-6">
+                    No rate limits.
+                </h2>
+
+                <a href="https://docs.covid.stream/" class="button has-text-weight-bold is-info is-outlined">
+                    <span class="icon">
+                        <i class="fas fa-book"></i>
+                    </span>
+                    <span>Read the Docs</span>
+                </a>
+
+                <a href="https://github.com/jacc/covid.stream" class="button has-text-weight-bold is-white is-outlined">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>View GitHub Repo</span>
+                </a>
+
+                <a href="disclaimer.html" class="button has-text-weight-bold is-warning is-outlined">
+                    <span class="icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </span>
+                    <span>Disclaimer</span>
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+    </section>
 </body>
+
 </html>
