@@ -92,7 +92,7 @@ class LatestConfirmed(object):
             number_count = self._redis.get("totalConfirmedNumbers")
             if isinstance(number_count, bytes):
                 number_count = number_count.decode("utf-8")
-            resp.media = {"data": {"totalConfirmedNumbers": number_count}}
+            resp.media = {"data": {"totalConfirmedNumbers": int(number_count)}}
         except Exception:
             logger.error("Unable to get numbers")
             logger.debug(f"{traceback.format_exc()}")
@@ -110,7 +110,7 @@ class LatestDeaths(object):
             number_count = self._redis.get("totalDeathNumbers")
             if isinstance(number_count, bytes):
                 number_count = number_count.decode("utf-8")
-            resp.media = {"data": {"totalDeathNumbers": number_count}}
+            resp.media = {"data": {"totalDeathNumbers": int(number_count)}}
         except Exception:
             logger.error("Unable to get numbers")
             logger.debug(f"{traceback.format_exc()}")
@@ -128,7 +128,7 @@ class LatestRecovered(object):
             number_count = self._redis.get("totalRecoveredNumbers")
             if isinstance(number_count, bytes):
                 number_count = number_count.decode("utf-8")
-            resp.media = {"data": {"totalRecoveredNumbers": number_count}}
+            resp.media = {"data": {"totalRecoveredNumbers": int(number_count)}}
         except Exception:
             logger.error("Unable to get numbers")
             logger.debug(f"{traceback.format_exc()}")
