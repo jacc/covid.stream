@@ -12,14 +12,17 @@ from app.modules.database import Database
 
 
 class Parser(object):
-    def __init__(self, saved_file_name):
+    def __init__(self, saved_file_name, useDatabase=True):
         if pathlib.Path(saved_file_name).exists() == True:
             self._name = saved_file_name
         else:
             logger.error(f"File provided {saved_file_name} does not exist.")
             raise Exception("File does not exist.")
 
-        self._db = Database()
+        if useDatabase == True:
+            self._db = Database()
+        else:
+            self._db = None
 
     def _get_key(self):
         try:
@@ -32,7 +35,9 @@ class Parser(object):
                 field_headers.append(x)
                 break
 
-            return tuple(field_headers[0])
+            cleaned_headers = [x.strip().replace(" ", "") for x in field_headers[0]]
+
+            return tuple(cleaned_headers)
         except Exception:
             logger.error("Unable to get headers for file.")
             logger.debug(f"HeaderFail: {traceback.format_exc()}")
@@ -68,5 +73,8 @@ class Parser(object):
 
             current_info["data"].append(row)
 
-        self._db.update_data(current_info)
-        return True
+        if self._db == None:
+            return current_info
+        else:
+            self._db.update_data(current_info)
+            return True
