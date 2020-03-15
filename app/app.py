@@ -2,6 +2,7 @@
 
 
 import json
+import traceback
 
 import arrow
 import falcon
@@ -81,6 +82,61 @@ class LatestNumbers(object):
         }
 
 
+class LatestConfirmed(object):
+    def __init__(self, redis_connection):
+        self._redis = redis_connection
+
+    def on_get(self, req, resp):
+
+        try:
+            number_count = self._redis.get("totalConfirmedNumbers")
+            if isinstance(number_count, bytes):
+                number_count = number_count.decode("utf-8")
+            resp.media = {"data": {"totalConfirmedNumbers": int(number_count)}}
+        except Exception:
+            logger.error("Unable to get numbers")
+            logger.debug(f"{traceback.format_exc()}")
+
+            resp.status = falcon.HTTP_500
+            resp.media = {"status": "error", "message": "Unable to get numbers."}
+
+
+class LatestDeaths(object):
+    def __init__(self, redis_connection):
+        self._redis = redis_connection
+
+    def on_get(self, req, resp):
+        try:
+            number_count = self._redis.get("totalDeathNumbers")
+            if isinstance(number_count, bytes):
+                number_count = number_count.decode("utf-8")
+            resp.media = {"data": {"totalDeathNumbers": int(number_count)}}
+        except Exception:
+            logger.error("Unable to get numbers")
+            logger.debug(f"{traceback.format_exc()}")
+
+            resp.status = falcon.HTTP_500
+            resp.media = {"status": "error", "message": "Unable to get numbers."}
+
+
+class LatestRecovered(object):
+    def __init__(self, redis_connection):
+        self._redis = redis_connection
+
+    def on_get(self, req, resp):
+        try:
+            number_count = self._redis.get("totalRecoveredNumbers")
+            if isinstance(number_count, bytes):
+                number_count = number_count.decode("utf-8")
+            resp.media = {"data": {"totalRecoveredNumbers": int(number_count)}}
+        except Exception:
+            logger.error("Unable to get numbers")
+            logger.debug(f"{traceback.format_exc()}")
+
+            resp.status = falcon.HTTP_500
+            resp.media = {"status": "error", "message": "Unable to get numbers."}
+
+
 api = falcon.API()
 database = Database()
 
@@ -90,3 +146,6 @@ country_redis = database._countryRedis
 api.add_route("/status", Ping(redis_connection))
 api.add_route("/latest/cases", LatestCases(redis_connection, country_redis))
 api.add_route("/latest/numbers", LatestNumbers(redis_connection))
+api.add_route("/latest/numbers/confirmed", LatestConfirmed(redis_connection))
+api.add_route("/latest/numbers/deaths", LatestDeaths(redis_connection))
+api.add_route("/latest/numbers/recovered", LatestRecovered(redis_connection))
