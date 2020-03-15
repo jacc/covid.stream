@@ -20,6 +20,8 @@
 
 # API
 
+https://api.covid.stream
+
 Read the docs [here](https://docs.covid.stream)
 
 ---
