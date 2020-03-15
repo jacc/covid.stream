@@ -20,8 +20,6 @@
 
 ## Live version
 
-
-
 Endpoint: https://api.covid.stream
 
 ### ``/latest/cases`` (GET)
@@ -53,7 +51,7 @@ Endpoint: https://api.covid.stream
 
 ```
 
-** This endpoint contains **ALL** cases found.**
+**This endpoint contains **ALL** cases found.**
 
 ### ``/latest/cases?filterByCountry=X`` (GET)
 
@@ -77,13 +75,13 @@ Returns the same information but filtered with the country. You can check all co
 
 ## Disclaimers
 
-Data might not be 100% in line with the version on Jhopkins dasbhoard. Sometimes data can be updated much later. The live version updates every 3 hours.
+Data might not be 100% in line with the version on John Hopkin's dashboard. This is because the GitHub repository we pull from might not update the data for ~12 hours. The live version updates every 3 hours to check for new data.
 
 ---
 
 ## Rate Limits
 
-No rate limits exist for now, but please remember that data will only be updated every three hours.
+No rate limits exist for now, but please remember that the data will only be updated every three hours.
 
 ---
 
