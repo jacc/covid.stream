@@ -4,7 +4,7 @@
   
 
   <p align="center">
-      <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=Live%20version%last%20updated&query=%24.lastUpdated&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue"></img>
+      <img src="https://img.shields.io/badge/dynamic/json?color=informational&label=Live%20version%20last%20updated&query=%24.lastUpdated&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue"></img>
       <img src="https://img.shields.io/badge/dynamic/json?color=blue&label=Status&query=%24.status&url=https%3A%2F%2Fapi.covid.stream%2Fstatus%3FgithubPage%3Dtrue"></img>
   </p>
   
