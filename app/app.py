@@ -2,6 +2,7 @@
 
 
 import json
+import traceback
 
 import arrow
 import falcon
@@ -79,82 +80,63 @@ class LatestNumbers(object):
                 "totalRecoveredNumbers": totalRecoveredNumbers,
             }
         }
-        
+
+
 class LatestConfirmed(object):
     def __init__(self, redis_connection):
         self._redis = redis_connection
 
     def on_get(self, req, resp):
-        with self._redis.pipeline() as pipe:
-            pipe.get("totalConfirmedNumbers")
-            results = pipe.execute()
 
-        for item in results:
-            try:
-                check_int = int(item)
-            except Exception:
-                logger.info("invalid information.")
-                totalConfirmedNumbers = None
-                break
+        try:
+            number_count = self._redis.get("totalConfirmedNumbers")
+            if isinstance(number_count, bytes):
+                number_count = number_count.decode("utf-8")
+            resp.media = {"data": {"totalConfirmedNumbers": number_count}}
+        except Exception:
+            logger.error("Unable to get numbers")
+            logger.debug(f"{traceback.format_exc()}")
 
-            totalConfirmedNumbers = int(results[0])
+            resp.status = falcon.HTTP_500
+            resp.media = {"status": "error", "message": "Unable to get numbers."}
 
-        resp.media = {
-            "data": {
-                "totalConfirmedNumbers": totalConfirmedNumbers
-            }
-        }
-        
+
 class LatestDeaths(object):
     def __init__(self, redis_connection):
         self._redis = redis_connection
 
     def on_get(self, req, resp):
-        with self._redis.pipeline() as pipe:
-            pipe.get("totalDeathNumbers")
-            results = pipe.execute()
+        try:
+            number_count = self._redis.get("totalDeathNumbers")
+            if isinstance(number_count, bytes):
+                number_count = number_count.decode("utf-8")
+            resp.media = {"data": {"totalDeathNumbers": number_count}}
+        except Exception:
+            logger.error("Unable to get numbers")
+            logger.debug(f"{traceback.format_exc()}")
 
-        for item in results:
-            try:
-                check_int = int(item)
-            except Exception:
-                logger.info("invalid information.")
-                totalDeathNumbers = None
-                break
+            resp.status = falcon.HTTP_500
+            resp.media = {"status": "error", "message": "Unable to get numbers."}
 
-            totalDeathNumbers = int(results[0])
 
-        resp.media = {
-            "data": {
-                "totalDeathNumbers": totalDeathNumbers
-            }
-        }
- 
 class LatestRecovered(object):
     def __init__(self, redis_connection):
         self._redis = redis_connection
 
     def on_get(self, req, resp):
-        with self._redis.pipeline() as pipe:
-            pipe.get("totalRecoveredNumbers")
-            results = pipe.execute()
+        try:
+            number_count = self._redis.get("totalRecoveredNumbers")
+            if isinstance(number_count, bytes):
+                number_count = number_count.decode("utf-8")
+            resp.media = {"data": {"totalRecoveredNumbers": number_count}}
+        except Exception:
+            logger.error("Unable to get numbers")
+            logger.debug(f"{traceback.format_exc()}")
 
-        for item in results:
-            try:
-                check_int = int(item)
-            except Exception:
-                logger.info("invalid information.")
-                totalRecoveredNumbers = None
-                break
+            resp.status = falcon.HTTP_500
+            resp.media = {"status": "error", "message": "Unable to get numbers."}
 
-            totalRecoveredNumbers = int(results[0])
 
-        resp.media = {
-            "data": {
-                "totalRecoveredNumbers": totalRecoveredNumbers
-            }
-        }
-    
 api = falcon.API()
 database = Database()
 
