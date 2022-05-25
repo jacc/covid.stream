@@ -21,7 +21,7 @@ loguru==0.4.1
 mccabe==0.6.1
 pathspec==0.7.0
 PyGithub==1.46
-PyJWT==1.7.1
+PyJWT==2.4.0
 pylint==2.4.4
 python-dateutil==2.8.1
 pytz==2019.3
